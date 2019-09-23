@@ -37,7 +37,7 @@ describe('hoffy', function() {
             expect(console.log.alwaysCalledWithExactly('Hello!')).to.be.true;
         });
     });
-
+/*
     describe('betterCallFn', function() {
 
         beforeEach(mockConsoleOutput);
@@ -131,6 +131,7 @@ describe('hoffy', function() {
             expect(rowsToObjects({headers, rows})).to.eql(expected);
         });
     });
+    */
 });
 
 
