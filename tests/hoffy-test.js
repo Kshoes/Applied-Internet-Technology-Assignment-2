@@ -37,7 +37,7 @@ describe('hoffy', function() {
             expect(console.log.alwaysCalledWithExactly('Hello!')).to.be.true;
         });
     });
-/*
+
     describe('betterCallFn', function() {
 
         beforeEach(mockConsoleOutput);
@@ -88,7 +88,7 @@ describe('hoffy', function() {
             expect(myParseInt(undefined, '101', 2)).to.be.undefined;
         });
     });
-
+/*
     describe('myReadFile', function() {
         it('calls a success function (passed as the 2nd argument) if the file is read successfully', function(done) {
             myReadFile('tests/words.txt', (data) => {
