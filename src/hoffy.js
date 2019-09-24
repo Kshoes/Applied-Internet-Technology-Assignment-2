@@ -113,7 +113,7 @@ function rowsToObjects(data) {
     const headers = data.headers;
     const rows = data.rows;
 
-    return rows.reduce((arr, element, index) => {
+    return rows.reduce((arr, element) => {
         arr.push(headers.reduce((row, header, index) => {row[header] = element[index]; return row;}, {}));
         return arr;
     }, []);
