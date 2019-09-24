@@ -3,10 +3,10 @@ const fs = require('fs');
 
 function sum(num1, num2, ...numn) {
 
-    if(arguments.length == 0) {
+    if(arguments.length === 0) {
         return 0;
     }
-    if(arguments.length == 1) {
+    if(arguments.length === 1) {
         return num1;
     }
 
@@ -113,8 +113,8 @@ function rowsToObjects(data) {
     const headers = data.headers;
     const rows = data.rows;
 
-    return rows.reduce((arr, element, index) =>  {
-        arr.push(headers.reduce((row, header, index) => {row[header] = element[index]; return row; }, {}))
+    return rows.reduce((arr, element, index) => {
+        arr.push(headers.reduce((row, header, index) => {row[header] = element[index]; return row;}, {}));
         return arr;
     }, []);
 }
@@ -129,4 +129,4 @@ module.exports = {
     myReadFile: myReadFile,
     readAndExtractWith: readAndExtractWith,
     rowsToObjects: rowsToObjects
-}
+};
