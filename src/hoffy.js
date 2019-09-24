@@ -1,4 +1,5 @@
 // hoffy.js
+const fs = require('fs');
 
 function sum(num1, num2, ...numn) {
 
@@ -73,6 +74,51 @@ function addPermissions(oldFn) {
     return newFn;
 }
 
+function myReadFile(fileName, successFn, errorFn) {
+
+    //const success = data => successFn(data);
+    //const failure = err => errorFn(err);
+
+    fs.readFile(fileName, 'utf-8', function(err, data) {
+        if(err) {
+            return errorFn(err);
+        }
+        else {
+            return successFn(data);
+        }
+    });
+    //fs.readFile('filename.txt', 'utf-8', callback)
+
+}
+
+function readAndExtractWith(extractor) {
+
+     function f(fileName, successFn, errorFn){
+
+        fs.readFile(fileName, 'utf-8', function(err, data) {
+            if(err) {
+                return errorFn(err);
+            }
+            else {
+                return successFn(extractor(data));
+            }
+        });
+     }
+
+     return f;
+}
+
+function rowsToObjects(data) {
+
+    const headers = data.headers;
+    const rows = data.rows;
+
+    return rows.reduce((arr, element, index) =>  {
+        arr.push(headers.reduce((row, header, index) => {row[header] = element[index]; return row; }, {}))
+        return arr;
+    }, []);
+}
+
 module.exports = {
     sum: sum,
     callFn: callFn,
@@ -80,5 +126,7 @@ module.exports = {
     opposite: opposite,
     bucket: bucket,
     addPermissions: addPermissions,
-    
+    myReadFile: myReadFile,
+    readAndExtractWith: readAndExtractWith,
+    rowsToObjects: rowsToObjects
 }
